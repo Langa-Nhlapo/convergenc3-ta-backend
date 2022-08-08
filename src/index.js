@@ -20,7 +20,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.post('/send_mail', async (req, res) => {
-  var {text} = req.body
+  var name = req.body.name
+  var averageHeight = req.body.avgHeight
 
   const transport = nodemailer.createTransport({
     host: process.env.MAIL_HOST,
@@ -42,11 +43,11 @@ app.post('/send_mail', async (req, res) => {
     line-height: 2;
     font-size: 20px;
     ">
-    <h2>Welcome ${to}</h2>
-    <p>${text}</p>
+    <h2>Welcome ${name}</h2>
+    <p>Your average height is ${averageHeight} cm</p>
     
     <p>Kind Regards,</p>
-    <p>Langa</p>
+    <p>Convergenc3 Team</p>
     </div>`
   })
 })
